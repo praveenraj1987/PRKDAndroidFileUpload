@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/pre-dexed/debug/classes-4af6e1a26f3855610a33c457f105cd58c0f82f30.jar" />
+    </item>
+    <item
+        jar="/usr/local/Cellar/android-sdk/23.0.2/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-fb2b3bed4e807fa1ff6b167a5d2b7ba45eb34126.jar" />
+    </item>
+    <item
+        jar="/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/libs/httpcore-4.3.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f91b7a4aadc5cf486df6e4634748d7dd7a73f06d">
+        <dex dex="/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/pre-dexed/debug/httpcore-4.3.3-5c5c920f3a983dad1afb4ab58b5e46a756747e30.jar" />
+    </item>
+    <item
+        jar="/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/libs/httpmime-4.3.6.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="66a39a5e37d5da40fdad6176fc24ef4316e74702">
+        <dex dex="/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/pre-dexed/debug/httpmime-4.3.6-f9b9bcfc219bbe26ebda13f72fc2d6509eccdd72.jar" />
+    </item>
+    <item
+        jar="/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/pre-dexed/debug/classes-d9fef69d9856236cdd49685ca70a5c0f577e2f7d.jar" />
+    </item>
+    <item
+        jar="/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/libs/httpclient-4.3.6.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f3cf3b25e14d3bca47773e95aa85ea8fefbf8e81">
+        <dex dex="/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/pre-dexed/debug/httpclient-4.3.6-c437b1976c8ba41b74af66fe66f7dd4745b53814.jar" />
+    </item>
+    <item
+        jar="/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/pre-dexed/debug/classes-0160b100ea6b76848d4a2839ddeb77c7eb782f79.jar" />
+    </item>
+    <item
+        jar="/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-7f903fa5261356f829a62e8b183246de7955575f.jar" />
+    </item>
+
+</items>

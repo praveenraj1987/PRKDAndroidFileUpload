@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Camera File Upload</string>
+    <string name="btnTakePicture">Capture Image</string>
+    <string name="btnRecordVideo">Retrieve Image</string>
+    <string name="or">(or)</string>
+    <string name="btnUploadToServer">Upload to Server</string>
+  <string name="Location">Lattitude and Longitude</string>
+  <string name="ShowLocation">Update Location</string>
+
+</resources>
