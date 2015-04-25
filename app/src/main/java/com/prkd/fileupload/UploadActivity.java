@@ -86,13 +86,32 @@ public class UploadActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// uploading the file to server
-				new UploadFileToServer().execute();
+
+        if(!(lat == null || lon == null)) {
+          new UploadFileToServer().execute();
+        }
+        else{
+          showGpsAlert();
+        }
 			}
 		});
 
 	}
 
-	/**
+  private void showGpsAlert() {
+    new AlertDialog.Builder(this)
+      .setTitle("Free Parking Spot")
+      .setMessage("GPS not wokring!! Please turn on and Try Again!")
+      .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+          finish();
+        }
+      })
+      .setIcon(android.R.drawable.ic_dialog_alert)
+      .show();
+  }
+
+  /**
 	 * Displaying captured image/video on the screen
 	 * */
 	private void previewMedia(boolean isImage) {

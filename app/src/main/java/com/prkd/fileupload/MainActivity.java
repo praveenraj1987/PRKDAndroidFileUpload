@@ -1,6 +1,8 @@
 package com.prkd.fileupload;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -133,7 +135,21 @@ public class MainActivity extends Activity implements
 //    Intent intent = new Intent(this, ShowNearByImages.class);
 //    intent.putExtra("lat", lat);
 //    intent.putExtra("lon", lon);
-    new RetrieveImageLocationFromServer().execute();
+    if(!(lat == null || lon == null)) {
+      new RetrieveImageLocationFromServer().execute();
+    }
+    else{
+      new AlertDialog.Builder(this)
+        .setTitle("Free Parking Spot")
+        .setMessage("GPS not wokring!! Please turn on and Try Again!")
+        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int which) {
+            // continue with delete
+          }
+        })
+        .setIcon(android.R.drawable.ic_dialog_alert)
+        .show();
+    }
     // start the image capture Intent
 //    startActivity(intent);
   }
@@ -439,9 +455,24 @@ public class MainActivity extends Activity implements
       e.printStackTrace();
     }
 
-    Intent intent = new Intent(this, ShowNearByImages.class);
-    intent.putExtra("urls", urlList);
-    startActivity(intent);
+    if(urlList.length > 0) {
+
+      Intent intent = new Intent(this, ShowNearByImages.class);
+      intent.putExtra("urls", urlList);
+      startActivity(intent);
+    }
+    else{
+      new AlertDialog.Builder(this)
+        .setTitle("Free Parking Spot")
+        .setMessage("No Free parking spot near by 1000Mts.")
+        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int which) {
+            // continue with delete
+          }
+        })
+        .setIcon(android.R.drawable.ic_dialog_alert)
+        .show();
+    }
   }
 
 }
