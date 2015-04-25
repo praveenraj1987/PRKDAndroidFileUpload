@@ -5,13 +5,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -22,7 +22,20 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -45,8 +58,8 @@ public class MainActivity extends Activity implements
  
     private Uri fileUri; // file url to store image/video
     
-    private Button btnCapturePicture;
-  private Button btnNearByPicture;
+    private ImageButton btnCapturePicture;
+  private ImageButton btnNearByPicture;
   private String lat;
   private String lon;
 
@@ -59,8 +72,8 @@ public class MainActivity extends Activity implements
         // These two lines are not needed
 //        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(getResources().getString(R.color.action_bar))));
  
-        btnCapturePicture = (Button) findViewById(R.id.btnCapturePicture);
-        btnNearByPicture = (Button) findViewById(R.id.btnNearByPicture);
+        btnCapturePicture = (ImageButton) findViewById(R.id.btnCapturePicture);
+        btnNearByPicture = (ImageButton) findViewById(R.id.btnNearByPicture);
 
         /**
          * Capture image button click event
@@ -88,15 +101,15 @@ public class MainActivity extends Activity implements
     });
 
 
-      tvLocation = (TextView) findViewById(R.id.tvLocation);
+//      tvLocation = (TextView) findViewById(R.id.tvLocation);
 
-      btnFusedLocation = (Button) findViewById(R.id.btnShowLocation);
-      btnFusedLocation.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View arg0) {
-          updateUI();
-        }
-      });
+//      btnFusedLocation = (Button) findViewById(R.id.btnShowLocation);
+//      btnFusedLocation.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View arg0) {
+//          updateUI();
+//        }
+//      });
 
         // Checking camera availability
         if (!isDeviceSupportCamera()) {
@@ -117,12 +130,12 @@ public class MainActivity extends Activity implements
     }
 
   private void showNearByImage() {
-    Intent intent = new Intent(this, ShowNearByImages.class);
-    intent.putExtra("lat", lat);
-    intent.putExtra("lon", lon);
-
+//    Intent intent = new Intent(this, ShowNearByImages.class);
+//    intent.putExtra("lat", lat);
+//    intent.putExtra("lon", lon);
+    new RetrieveImageLocationFromServer().execute();
     // start the image capture Intent
-    startActivity(intent);
+//    startActivity(intent);
   }
 
   private static final long INTERVAL = 1000 * 10;
@@ -276,8 +289,8 @@ public class MainActivity extends Activity implements
   LocationRequest mLocationRequest;
   Location mCurrentLocation;
   String mLastUpdateTime;
-  TextView tvLocation;
-  Button btnFusedLocation;
+//  TextView tvLocation;
+//  Button btnFusedLocation;
 
 
   @Override
@@ -310,11 +323,11 @@ public class MainActivity extends Activity implements
     if (null != mCurrentLocation) {
       lat = String.valueOf(mCurrentLocation.getLatitude());
       lon = String.valueOf(mCurrentLocation.getLongitude());
-      tvLocation.setText("At Time: " + mLastUpdateTime + "\n" +
-        "Latitude: " + lat + "\n" +
-        "Longitude: " + lon + "\n" +
-        "Accuracy: " + mCurrentLocation.getAccuracy() + "\n" +
-        "Provider: " + mCurrentLocation.getProvider());
+//      tvLocation.setText("At Time: " + mLastUpdateTime + "\n" +
+//        "Latitude: " + lat + "\n" +
+//        "Longitude: " + lon + "\n" +
+//        "Accuracy: " + mCurrentLocation.getAccuracy() + "\n" +
+//        "Provider: " + mCurrentLocation.getProvider());
     } else {
       Log.d(TAG, "location is null ...............");
     }
@@ -339,4 +352,96 @@ public class MainActivity extends Activity implements
     mGoogleApiClient.disconnect();
     Log.d(TAG, "isConnected ...............: " + mGoogleApiClient.isConnected());
   }
+
+
+  private class RetrieveImageLocationFromServer extends AsyncTask<Void, Integer, String> {
+    @Override
+    protected void onPreExecute() {
+      // setting progress bar to zero
+      super.onPreExecute();
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... progress) {
+    }
+
+    @Override
+    protected String doInBackground(Void... params) {
+      return uploadFile();
+    }
+
+    @SuppressWarnings("deprecation")
+    private String uploadFile() {
+      String responseString = null;
+
+      HttpClient httpclient = new DefaultHttpClient();
+      HttpPost httppost = new HttpPost(Config.GET_IMAGE_URL);
+
+      try {
+        AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
+          new AndroidMultiPartEntity.ProgressListener() {
+
+            @Override
+            public void transferred(long num) {
+            }
+          });
+
+        // Extra parameters if you want to pass to server
+        entity.addPart("lat",new StringBody(lat));
+        entity.addPart("lon", new StringBody(lon));
+
+//        totalSize = entity.getContentLength();
+        httppost.setEntity(entity);
+
+        // Making server call
+        HttpResponse response = httpclient.execute(httppost);
+        HttpEntity r_entity = response.getEntity();
+
+        int statusCode = response.getStatusLine().getStatusCode();
+        if (statusCode == 200) {
+          // Server response
+          responseString = EntityUtils.toString(r_entity);
+        } else {
+          responseString = "Error occurred! Http Status Code: "
+            + statusCode;
+        }
+
+      } catch (ClientProtocolException e) {
+        responseString = e.toString();
+      } catch (IOException e) {
+        responseString = e.toString();
+      }
+
+      return responseString;
+
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+      processResult(result);
+
+      super.onPostExecute(result);
+    }
+
+  }
+
+  private void processResult(String result) {
+    String[] urlList = new String[0];
+    try {
+      JSONObject json;
+      json = new JSONObject(result);
+      JSONArray imageList = json.getJSONArray("ImageList");
+      urlList = new String[imageList.length()];
+      for(int i = 0 ; i < imageList.length(); i++){
+        urlList[i] = ((JSONObject )imageList.get(i)).getString("image");
+      }
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+
+    Intent intent = new Intent(this, ShowNearByImages.class);
+    intent.putExtra("urls", urlList);
+    startActivity(intent);
+  }
+
 }

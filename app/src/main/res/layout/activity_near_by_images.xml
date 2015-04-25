@@ -7,32 +7,32 @@
     android:baselineAligned="false"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:orientation="vertical" >
+    <!--<LinearLayout-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="vertical" >-->
 
-      <ProgressBar
-          android:id="@+id/progressBar"
-          style="?android:attr/progressBarStyleHorizontal"
-          android:layout_width="fill_parent"
-          android:layout_height="20dp"
-          android:layout_marginBottom="35dp"
-          android:visibility="gone"/>
+      <!--<ProgressBar-->
+          <!--android:id="@+id/progressBar"-->
+          <!--style="?android:attr/progressBarStyleHorizontal"-->
+          <!--android:layout_width="fill_parent"-->
+          <!--android:layout_height="20dp"-->
+          <!--android:layout_marginBottom="35dp"-->
+          <!--android:visibility="gone"/>-->
 
-      <TextView
-          android:id="@+id/imagesLocation"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="20dp"
-          android:gravity="center_horizontal"
-          android:text="@string/Location"
-          android:textColor="@color/txt_font" />
+      <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+          <!--&lt;!&ndash;android:id="@+id/imagesLocation"&ndash;&gt;-->
+          <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+          <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+          <!--&lt;!&ndash;android:layout_marginBottom="20dp"&ndash;&gt;-->
+          <!--&lt;!&ndash;android:gravity="center_horizontal"&ndash;&gt;-->
+          <!--&lt;!&ndash;android:text="@string/Location"&ndash;&gt;-->
+          <!--&lt;!&ndash;android:textColor="@color/txt_font" />&ndash;&gt;-->
 
 
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
 </RelativeLayout>

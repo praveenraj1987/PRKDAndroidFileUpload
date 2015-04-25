@@ -9,5 +9,6 @@
   <string name="Location">Lattitude and Longitude</string>
   <string name="ShowLocation">Update Location</string>
   <string name="ShowNearBy">Show Near By</string>
+  <string name="ac_name_image_pager">Nearby Images</string>
 
 </resources>

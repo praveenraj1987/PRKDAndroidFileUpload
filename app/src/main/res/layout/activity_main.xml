@@ -16,46 +16,46 @@
 
         <!-- Capture picture button -->
 
-      <Button
+      <ImageButton
           android:id="@+id/btnNearByPicture"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginBottom="20dp"
-          android:background="@color/btn_bg"
+          android:background="@drawable/search"
           android:paddingLeft="20dp"
           android:paddingRight="20dp"
           android:text="@string/ShowNearBy"
           android:textColor="@color/white" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btnCapturePicture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:background="@color/btn_bg"
+            android:background="@drawable/record"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="@string/btnTakePicture"
             android:textColor="@color/white" />
 
-      <TextView
-          android:id="@+id/tvLocation"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="20dp"
-          android:gravity="center_horizontal"
-          android:text="@string/Location"
-          android:textColor="@color/txt_font" />
+      <!--<TextView-->
+          <!--android:id="@+id/tvLocation"-->
+          <!--android:layout_width="wrap_content"-->
+          <!--android:layout_height="wrap_content"-->
+          <!--android:layout_marginBottom="20dp"-->
+          <!--android:gravity="center_horizontal"-->
+          <!--android:text="@string/Location"-->
+          <!--android:textColor="@color/txt_font" />-->
 
-      <Button
-          android:id="@+id/btnShowLocation"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:background="@color/btn_bg"
-          android:paddingLeft="20dp"
-          android:paddingRight="20dp"
-          android:text="@string/ShowLocation"
-          android:textColor="@color/white" />
+      <!--<Button-->
+          <!--android:id="@+id/btnShowLocation"-->
+          <!--android:layout_width="wrap_content"-->
+          <!--android:layout_height="wrap_content"-->
+          <!--android:background="@color/btn_bg"-->
+          <!--android:paddingLeft="20dp"-->
+          <!--android:paddingRight="20dp"-->
+          <!--android:text="@string/ShowLocation"-->
+          <!--android:textColor="@color/white" />-->
 
     </LinearLayout>
 

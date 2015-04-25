@@ -1,34 +1,36 @@
+/*******************************************************************************
+ * Copyright 2014 Sergey Tarasevich
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 package com.prkd.fileupload;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
-public class ShowNearByImages  extends FragmentActivity {
-  private ProgressBar progressBar;
-  long totalSize = 0;
-  private String lat="";
-  private String lon="";
-  TextView imagesLocation;
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    // Receiving the data from previous activity
-    Intent i = getIntent();
-
-    // boolean flag to identify the media type, image or video
-//    boolean isImage = i.getBooleanExtra("isImage", true);
-    lat = i.getStringExtra("lat");
-    lon = i.getStringExtra("lon");
+/**
+ * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
+ */
+public class SimpleImageActivity extends FragmentActivity {
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
     ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(getApplicationContext());
     config.threadPriority(Thread.NORM_PRIORITY - 2);
@@ -40,9 +42,11 @@ public class ShowNearByImages  extends FragmentActivity {
 
     // Initialize ImageLoader with configuration.
     ImageLoader.getInstance().init(config.build());
+
+//    String[] urls = getIntent().getExtras().getStringArray("urls");
     Fragment fr;
-    String tag;
-    int titleRes;
+		String tag;
+		int titleRes;
     tag = ImagePagerFragment.class.getSimpleName();
     fr = getSupportFragmentManager().findFragmentByTag(tag);
     if (fr == null) {
@@ -51,7 +55,7 @@ public class ShowNearByImages  extends FragmentActivity {
     }
     titleRes = R.string.ac_name_image_pager;
 
-    setTitle(titleRes);
-    getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fr, tag).commit();
-  }
+		setTitle(titleRes);
+		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fr, tag).commit();
+	}
 }
