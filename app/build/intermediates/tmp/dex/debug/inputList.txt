@@ -1,9 +1,0 @@
-/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/classes/debug
-/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-fb2b3bed4e807fa1ff6b167a5d2b7ba45eb34126.jar
-/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/pre-dexed/debug/httpmime-4.3.6-f9b9bcfc219bbe26ebda13f72fc2d6509eccdd72.jar
-/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-7f903fa5261356f829a62e8b183246de7955575f.jar
-/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/pre-dexed/debug/httpcore-4.3.3-5c5c920f3a983dad1afb4ab58b5e46a756747e30.jar
-/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/pre-dexed/debug/classes-0160b100ea6b76848d4a2839ddeb77c7eb782f79.jar
-/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/pre-dexed/debug/httpclient-4.3.6-c437b1976c8ba41b74af66fe66f7dd4745b53814.jar
-/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/pre-dexed/debug/classes-d9fef69d9856236cdd49685ca70a5c0f577e2f7d.jar
-/Users/Praveen/workspace/AndroidSamples/CameraPhotoVideoUpload/app/build/intermediates/pre-dexed/debug/classes-4af6e1a26f3855610a33c457f105cd58c0f82f30.jar

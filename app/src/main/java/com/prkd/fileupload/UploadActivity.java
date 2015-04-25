@@ -31,6 +31,7 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 
 public class UploadActivity extends Activity {
 	// LogCat tag
@@ -43,8 +44,10 @@ public class UploadActivity extends Activity {
 	private VideoView vidPreview;
 	private Button btnUpload;
 	long totalSize = 0;
+  private String lat;
+  private String lon;
 
-	@Override
+  @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_upload);
@@ -67,6 +70,8 @@ public class UploadActivity extends Activity {
 
 		// boolean flag to identify the media type, image or video
 		boolean isImage = i.getBooleanExtra("isImage", true);
+    lat = i.getStringExtra("lat");
+    lon = i.getStringExtra("lon");
 
 		if (filePath != null) {
 			// Displaying the image or video on the screen
@@ -165,9 +170,9 @@ public class UploadActivity extends Activity {
 				entity.addPart("file", new FileBody(sourceFile));
 
 				// Extra parameters if you want to pass to server
-				entity.addPart("lat",
-						new StringBody("12"));
-				entity.addPart("lon", new StringBody("12"));
+				entity.addPart("lat",new StringBody(lat));
+				entity.addPart("lon", new StringBody(lon));
+				entity.addPart("time", new StringBody(new Timestamp(System.currentTimeMillis()).toString()));
 
 				totalSize = entity.getContentLength();
 				httppost.setEntity(entity);

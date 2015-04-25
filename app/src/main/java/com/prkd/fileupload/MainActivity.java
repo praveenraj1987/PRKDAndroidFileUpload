@@ -46,8 +46,9 @@ public class MainActivity extends Activity implements
     private Uri fileUri; // file url to store image/video
     
     private Button btnCapturePicture;
+  private Button btnNearByPicture;
   private String lat;
-  private String lng;
+  private String lon;
 
   @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,20 +60,32 @@ public class MainActivity extends Activity implements
 //        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(getResources().getString(R.color.action_bar))));
  
         btnCapturePicture = (Button) findViewById(R.id.btnCapturePicture);
+        btnNearByPicture = (Button) findViewById(R.id.btnNearByPicture);
 
         /**
          * Capture image button click event
          */
-        btnCapturePicture.setOnClickListener(new View.OnClickListener() {
+        btnNearByPicture.setOnClickListener(new View.OnClickListener() {
  
             @Override
             public void onClick(View v) {
                 // capture picture
-                captureImage();
+                showNearByImage();
             }
         });
 
 
+    /**
+     * Capture image button click event
+     */
+    btnCapturePicture.setOnClickListener(new View.OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        // capture picture
+        captureImage();
+      }
+    });
 
 
       tvLocation = (TextView) findViewById(R.id.tvLocation);
@@ -102,6 +115,16 @@ public class MainActivity extends Activity implements
         .build();
 
     }
+
+  private void showNearByImage() {
+    Intent intent = new Intent(this, ShowNearByImages.class);
+    intent.putExtra("lat", lat);
+    intent.putExtra("lon", lon);
+
+    // start the image capture Intent
+    startActivity(intent);
+  }
+
   private static final long INTERVAL = 1000 * 10;
   private static final long FASTEST_INTERVAL = 1000 * 5;
 
@@ -198,6 +221,8 @@ public class MainActivity extends Activity implements
     	Intent i = new Intent(MainActivity.this, UploadActivity.class);
         i.putExtra("filePath", fileUri.getPath());
         i.putExtra("isImage", isImage);
+        i.putExtra("lat", lat);
+        i.putExtra("lon", lon);
         startActivity(i);
     }
 
@@ -284,10 +309,10 @@ public class MainActivity extends Activity implements
     Log.d(TAG, "UI update initiated .............");
     if (null != mCurrentLocation) {
       lat = String.valueOf(mCurrentLocation.getLatitude());
-      lng = String.valueOf(mCurrentLocation.getLongitude());
+      lon = String.valueOf(mCurrentLocation.getLongitude());
       tvLocation.setText("At Time: " + mLastUpdateTime + "\n" +
         "Latitude: " + lat + "\n" +
-        "Longitude: " + lng + "\n" +
+        "Longitude: " + lon + "\n" +
         "Accuracy: " + mCurrentLocation.getAccuracy() + "\n" +
         "Provider: " + mCurrentLocation.getProvider());
     } else {

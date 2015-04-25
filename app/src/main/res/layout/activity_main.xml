@@ -16,6 +16,17 @@
 
         <!-- Capture picture button -->
 
+      <Button
+          android:id="@+id/btnNearByPicture"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="20dp"
+          android:background="@color/btn_bg"
+          android:paddingLeft="20dp"
+          android:paddingRight="20dp"
+          android:text="@string/ShowNearBy"
+          android:textColor="@color/white" />
+
         <Button
             android:id="@+id/btnCapturePicture"
             android:layout_width="wrap_content"
@@ -26,26 +37,6 @@
             android:paddingRight="20dp"
             android:text="@string/btnTakePicture"
             android:textColor="@color/white" />
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginBottom="20dp"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:text="@string/or"-->
-            <!--android:textColor="@color/txt_font" />-->
-
-        <!--&lt;!&ndash; Record video button &ndash;&gt;-->
-
-        <!--<Button-->
-            <!--android:id="@+id/btnRetrieveImage"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@color/btn_bg"-->
-            <!--android:paddingLeft="20dp"-->
-            <!--android:paddingRight="20dp"-->
-            <!--android:text="@string/btnRecordVideo"-->
-            <!--android:textColor="@color/white" />-->
 
       <TextView
           android:id="@+id/tvLocation"

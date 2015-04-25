@@ -8,5 +8,6 @@
     <string name="btnUploadToServer">Upload to Server</string>
   <string name="Location">Lattitude and Longitude</string>
   <string name="ShowLocation">Update Location</string>
+  <string name="ShowNearBy">Show Near By</string>
 
 </resources>

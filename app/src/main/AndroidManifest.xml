@@ -32,6 +32,10 @@
             android:name="com.prkd.fileupload.UploadActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.prkd.fileupload.ShowNearByImages"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
