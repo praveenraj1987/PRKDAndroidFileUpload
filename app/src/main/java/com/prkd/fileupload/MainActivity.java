@@ -16,8 +16,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -75,11 +73,11 @@ public class MainActivity extends Activity implements
         // Changing action bar background color
         // These two lines are not needed
 //        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(getResources().getString(R.color.action_bar))));
-
-      AdView mAdView = (AdView) findViewById(R.id.adView);
-      AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("07CD19292E4218769CA8F1A59E845F29").build();
-      mAdView.loadAd(adRequest);
+//
+//      AdView mAdView = (AdView) findViewById(R.id.adViewMain);
+//      AdRequest adRequest = new AdRequest.Builder()
+//                .addTestDevice("07CD19292E4218769CA8F1A59E845F29").build();
+//      mAdView.loadAd(adRequest);
         btnCapturePicture = (ImageButton) findViewById(R.id.btnCapturePicture);
         btnNearByPicture = (ImageButton) findViewById(R.id.btnNearByPicture);
 

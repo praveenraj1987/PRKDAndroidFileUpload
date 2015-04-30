@@ -28,6 +28,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -44,11 +46,11 @@ public class ImagePagerFragment extends BaseFragment {
 		View rootView = inflater.inflate(R.layout.fr_image_pager, container, false);
 		ViewPager pager = (ViewPager) rootView.findViewById(R.id.pager);
     String[] urls = getArguments().getStringArray("urls");
-
     ImageAdapter adapter = new ImageAdapter(getActivity());
     adapter.setImageUrls(urls);
     pager.setAdapter(adapter);
 		pager.setCurrentItem(getArguments().getInt(Constants.Extra.IMAGE_POSITION, 0));
+
 		return rootView;
 	}
 
@@ -128,7 +130,14 @@ public class ImagePagerFragment extends BaseFragment {
 				}
 			});
 
-			view.addView(imageLayout, 0);
+
+      AdView mAdView = (AdView) imageLayout.findViewById(R.id.adViewPager);
+      AdRequest adRequest = new AdRequest.Builder()
+        .addTestDevice("07CD19292E4218769CA8F1A59E845F29").build();
+      mAdView.loadAd(adRequest);
+
+
+      view.addView(imageLayout, 0);
 			return imageLayout;
 		}
 
