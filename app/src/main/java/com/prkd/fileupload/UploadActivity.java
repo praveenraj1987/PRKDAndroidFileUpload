@@ -32,6 +32,8 @@ import org.apache.http.util.EntityUtils;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class UploadActivity extends Activity {
 	// LogCat tag
@@ -46,6 +48,7 @@ public class UploadActivity extends Activity {
 	long totalSize = 0;
   private String lat;
   private String lon;
+  private Date mLastUpdateTime;
 
   @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +75,7 @@ public class UploadActivity extends Activity {
 		boolean isImage = i.getBooleanExtra("isImage", true);
     lat = i.getStringExtra("lat");
     lon = i.getStringExtra("lon");
-
+    mLastUpdateTime = (Date)i.getSerializableExtra("mLastUpdateTime");
 		if (filePath != null) {
 			// Displaying the image or video on the screen
 			previewMedia(isImage);
@@ -87,7 +90,7 @@ public class UploadActivity extends Activity {
 			public void onClick(View v) {
 				// uploading the file to server
 
-        if(!(lat == null || lon == null)) {
+        if((!(lat == null || lon == null)) && (mLastUpdateTime == null || getDateDiff(mLastUpdateTime, new Date(), TimeUnit.SECONDS) < 60 )) {
           new UploadFileToServer().execute();
         }
         else{
@@ -97,6 +100,11 @@ public class UploadActivity extends Activity {
 		});
 
 	}
+
+  public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+    long diffInMillies = date2.getTime() - date1.getTime();
+    return timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);
+  }
 
   private void showGpsAlert() {
     new AlertDialog.Builder(this)

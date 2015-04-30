@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -38,10 +40,10 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends Activity implements
   LocationListener,
@@ -73,7 +75,11 @@ public class MainActivity extends Activity implements
         // Changing action bar background color
         // These two lines are not needed
 //        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(getResources().getString(R.color.action_bar))));
- 
+
+      AdView mAdView = (AdView) findViewById(R.id.adView);
+      AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("07CD19292E4218769CA8F1A59E845F29").build();
+      mAdView.loadAd(adRequest);
         btnCapturePicture = (ImageButton) findViewById(R.id.btnCapturePicture);
         btnNearByPicture = (ImageButton) findViewById(R.id.btnNearByPicture);
 
@@ -103,16 +109,6 @@ public class MainActivity extends Activity implements
     });
 
 
-//      tvLocation = (TextView) findViewById(R.id.tvLocation);
-
-//      btnFusedLocation = (Button) findViewById(R.id.btnShowLocation);
-//      btnFusedLocation.setOnClickListener(new View.OnClickListener() {
-//        @Override
-//        public void onClick(View arg0) {
-//          updateUI();
-//        }
-//      });
-
         // Checking camera availability
         if (!isDeviceSupportCamera()) {
             Toast.makeText(getApplicationContext(),
@@ -131,11 +127,17 @@ public class MainActivity extends Activity implements
 
     }
 
+  public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+    long diffInMillies = date2.getTime() - date1.getTime();
+    return timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);
+  }
+
   private void showNearByImage() {
 //    Intent intent = new Intent(this, ShowNearByImages.class);
 //    intent.putExtra("lat", lat);
 //    intent.putExtra("lon", lon);
-    if(!(lat == null || lon == null)) {
+
+    if((!(lat == null || lon == null)) && (mLastUpdateTime == null || getDateDiff(mLastUpdateTime, new Date(), TimeUnit.SECONDS) < 60 )) {
       new RetrieveImageLocationFromServer().execute();
     }
     else{
@@ -252,6 +254,8 @@ public class MainActivity extends Activity implements
         i.putExtra("isImage", isImage);
         i.putExtra("lat", lat);
         i.putExtra("lon", lon);
+        i.putExtra("mLastUpdateTime", mLastUpdateTime);
+
         startActivity(i);
     }
 
@@ -304,7 +308,7 @@ public class MainActivity extends Activity implements
   GoogleApiClient mGoogleApiClient;
   LocationRequest mLocationRequest;
   Location mCurrentLocation;
-  String mLastUpdateTime;
+  Date mLastUpdateTime;
 //  TextView tvLocation;
 //  Button btnFusedLocation;
 
@@ -330,7 +334,7 @@ public class MainActivity extends Activity implements
   public void onLocationChanged(Location location) {
     Log.d(TAG, "Firing onLocationChanged..............................................");
     mCurrentLocation = location;
-    mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
+    mLastUpdateTime = new Date();
     updateUI();
   }
 

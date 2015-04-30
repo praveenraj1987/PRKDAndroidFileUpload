@@ -17,33 +17,9 @@ package com.prkd.fileupload;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-
-/**
- * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
- */
 public abstract class BaseFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-//		setHasOptionsMenu(true);
 	}
-
-//	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//		inflater.inflate(R.menu.main_menu, menu);
-//	}
-//
-//	@Override
-//	public boolean onOptionsItemSelected(MenuItem item) {
-//		switch (item.getItemId()) {
-//			case R.id.item_clear_memory_cache:
-//				ImageLoader.getInstance().clearMemoryCache();
-//				return true;
-//			case R.id.item_clear_disc_cache:
-//				ImageLoader.getInstance().clearDiskCache();
-//				return true;
-//			default:
-//				return false;
-//		}
-//	}
 }

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Camera File Upload</string>
+    <string name="app_name">PRKD</string>
     <string name="btnTakePicture">Capture Image</string>
     <string name="btnRecordVideo">Retrieve Image</string>
     <string name="or">(or)</string>
     <string name="btnUploadToServer">Upload to Server</string>
-  <string name="Location">Lattitude and Longitude</string>
-  <string name="ShowLocation">Update Location</string>
-  <string name="ShowNearBy">Show Near By</string>
-  <string name="ac_name_image_pager">Nearby Images</string>
-
+    <string name="Location">Lattitude and Longitude</string>
+    <string name="ShowLocation">Update Location</string>
+    <string name="ShowNearBy">Show Near By</string>
+    <string name="ac_name_image_pager">Nearby Images</string>
+    <string name="banner_ad_unit_id">ca-app-pub-2442564128299068/9742161039</string>
 </resources>

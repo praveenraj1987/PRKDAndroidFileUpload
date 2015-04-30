@@ -35,9 +35,6 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
-/**
- * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
- */
 public class ImagePagerFragment extends BaseFragment {
 
 	public static final int INDEX = 2;
