@@ -1,54 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:ads="http://schemas.android.com/apk/res-auto"
 
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/view_background"
-    android:baselineAligned="false"
-    android:orientation="vertical" >
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/view_background"
+                android:baselineAligned="false"
+                android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
+  <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:gravity="center"
+      android:orientation="vertical">
+
+    <!-- Capture picture button -->
+
+    <ImageButton
+        android:id="@+id/btnNearByPicture"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/search"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/ShowNearBy"
+        android:textColor="@color/white"/>
+
+    <ImageButton
+        android:id="@+id/btnCapturePicture"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/record"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/btnTakePicture"
+        android:textColor="@color/white"/>
+
+    <!--<com.google.android.gms.ads.AdView-->
+    <!--android:id="@+id/adViewMain"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--ads:adSize="BANNER"-->
+    <!--ads:adUnitId="@string/banner_ad_unit_id">-->
+    <!--</com.google.android.gms.ads.AdView>-->
+
+    <TextView
+        android:id="@+id/privacy_tv"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:orientation="vertical" >
-
-        <!-- Capture picture button -->
-
-      <ImageButton
-          android:id="@+id/btnNearByPicture"
-          android:layout_width="200dp"
-          android:layout_height="200dp"
-          android:layout_marginBottom="20dp"
-          android:background="@drawable/search"
-          android:paddingLeft="20dp"
-          android:paddingRight="20dp"
-          android:text="@string/ShowNearBy"
-          android:textColor="@color/white" />
-
-        <ImageButton
-            android:id="@+id/btnCapturePicture"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/record"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="@string/btnTakePicture"
-            android:textColor="@color/white" />
-
-      <com.google.android.gms.ads.AdView
-          android:id="@+id/adViewMain"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_centerHorizontal="true"
-          android:layout_alignParentBottom="true"
-          ads:adSize="BANNER"
-          ads:adUnitId="@string/banner_ad_unit_id">
-      </com.google.android.gms.ads.AdView>
-
-    </LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/privacy_msg"/>
+  </LinearLayout>
 
 </RelativeLayout>

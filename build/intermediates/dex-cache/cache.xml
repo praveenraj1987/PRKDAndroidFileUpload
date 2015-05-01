@@ -30,18 +30,18 @@
         <dex dex="/Users/Praveen/workspace/PRKD/ImageUpload/app/build/intermediates/pre-dexed/debug/classes-ce23f5d5e4c3592fcf68d1ed69604b0b6734373a.jar" />
     </item>
     <item
-        jar="/Users/Praveen/workspace/PRKD/ImageUpload/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/Users/Praveen/workspace/PRKD/ImageUpload/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-9280fd84b2ecb0d496d266b6f0fa72f38b7959c9.jar" />
-    </item>
-    <item
         jar="/Users/Praveen/workspace/PRKD/ImageUpload/app/libs/universal-image-loader-1.9.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="a85588bec3e2c4584d593d3f15df1677321bca72">
         <dex dex="/Users/Praveen/workspace/PRKD/ImageUpload/app/build/intermediates/pre-dexed/debug/universal-image-loader-1.9.3-caddc876385bec05a4131fcea2b556976c96cca5.jar" />
+    </item>
+    <item
+        jar="/Users/Praveen/workspace/PRKD/ImageUpload/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/Praveen/workspace/PRKD/ImageUpload/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-9280fd84b2ecb0d496d266b6f0fa72f38b7959c9.jar" />
     </item>
     <item
         jar="/Users/Praveen/workspace/PRKD/ImageUpload/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"

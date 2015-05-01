@@ -11,9 +11,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -80,7 +82,8 @@ public class MainActivity extends Activity implements
 //      mAdView.loadAd(adRequest);
         btnCapturePicture = (ImageButton) findViewById(R.id.btnCapturePicture);
         btnNearByPicture = (ImageButton) findViewById(R.id.btnNearByPicture);
-
+        TextView tv = (TextView) findViewById(R.id.privacy_tv);
+        tv.setMovementMethod(LinkMovementMethod.getInstance());
         /**
          * Capture image button click event
          */
