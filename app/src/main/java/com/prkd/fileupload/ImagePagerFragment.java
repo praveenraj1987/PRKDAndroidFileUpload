@@ -132,9 +132,8 @@ public class ImagePagerFragment extends BaseFragment {
 
 
       AdView mAdView = (AdView) imageLayout.findViewById(R.id.adViewPager);
-      AdRequest adRequest = new AdRequest.Builder().build();
-
-        //.addTestDevice("07CD19292E4218769CA8F1A59E845F29").build();
+      AdRequest adRequest = new AdRequest.Builder()//.build();
+        .addTestDevice("2E826D20FFCBB0B52DB0295A15BA23EF").build();
       mAdView.loadAd(adRequest);
 
 

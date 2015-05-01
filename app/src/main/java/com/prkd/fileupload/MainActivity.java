@@ -185,14 +185,29 @@ public class MainActivity extends Activity implements
      * Launching camera app to capture image
      */
     private void captureImage() {
+      if((!(lat == null || lon == null)) && (mLastUpdateTime == null || getDateDiff(mLastUpdateTime, new Date(), TimeUnit.SECONDS) < 60 )) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
- 
+
         fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
- 
+
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
- 
+
         // start the image capture Intent
         startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
+      }
+      else{
+        new AlertDialog.Builder(this)
+          .setTitle("Free Parking Spot")
+          .setMessage("GPS not wokring!! Please turn on and Try Again!")
+          .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+              // continue with delete
+            }
+          })
+          .setIcon(android.R.drawable.ic_dialog_alert)
+          .show();
+      }
+
     }
 
     /**
