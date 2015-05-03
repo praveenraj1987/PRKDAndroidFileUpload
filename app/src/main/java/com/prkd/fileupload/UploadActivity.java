@@ -36,74 +36,73 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class UploadActivity extends Activity {
-	// LogCat tag
-	private static final String TAG = MainActivity.class.getSimpleName();
+  // LogCat tag
+  private static final String TAG = MainActivity.class.getSimpleName();
 
-	private ProgressBar progressBar;
-	private String filePath = null;
-	private TextView txtPercentage;
-	private ImageView imgPreview;
-	private VideoView vidPreview;
-	private Button btnUpload;
-	long totalSize = 0;
+  private ProgressBar progressBar;
+  private String filePath = null;
+  private TextView txtPercentage;
+  private ImageView imgPreview;
+  private VideoView vidPreview;
+  private Button btnUpload;
+  long totalSize = 0;
   private String lat;
   private String lon;
   private Date mLastUpdateTime;
 
   @Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_upload);
-		txtPercentage = (TextView) findViewById(R.id.txtPercentage);
-		btnUpload = (Button) findViewById(R.id.btnUpload);
-		progressBar = (ProgressBar) findViewById(R.id.progressBar);
-		imgPreview = (ImageView) findViewById(R.id.imgPreview);
-		vidPreview = (VideoView) findViewById(R.id.videoPreview);
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_upload);
+    txtPercentage = (TextView) findViewById(R.id.txtPercentage);
+    btnUpload = (Button) findViewById(R.id.btnUpload);
+    progressBar = (ProgressBar) findViewById(R.id.progressBar);
+    imgPreview = (ImageView) findViewById(R.id.imgPreview);
+    vidPreview = (VideoView) findViewById(R.id.videoPreview);
 
-		// Changing action bar background color
+    // Changing action bar background color
 //		getActionBar().setBackgroundDrawable(
 //				new ColorDrawable(Color.parseColor(getResources().getString(
 //						R.color.action_bar))));
 
-		// Receiving the data from previous activity
-		Intent i = getIntent();
+    // Receiving the data from previous activity
+    Intent i = getIntent();
 
-		// image or video path that is captured in previous activity
-		filePath = i.getStringExtra("filePath");
+    // image or video path that is captured in previous activity
+    filePath = i.getStringExtra("filePath");
 
-		// boolean flag to identify the media type, image or video
-		boolean isImage = i.getBooleanExtra("isImage", true);
+    // boolean flag to identify the media type, image or video
+    boolean isImage = i.getBooleanExtra("isImage", true);
     lat = i.getStringExtra("lat");
     lon = i.getStringExtra("lon");
-    mLastUpdateTime = (Date)i.getSerializableExtra("mLastUpdateTime");
-		if (filePath != null) {
-			// Displaying the image or video on the screen
-			previewMedia(isImage);
-		} else {
-			Toast.makeText(getApplicationContext(),
-					"Sorry, file path is missing!", Toast.LENGTH_LONG).show();
-		}
+    mLastUpdateTime = (Date) i.getSerializableExtra("mLastUpdateTime");
+    if (filePath != null) {
+      // Displaying the image or video on the screen
+      previewMedia(isImage);
+    } else {
+      Toast.makeText(getApplicationContext(),
+        "Sorry, file path is missing!", Toast.LENGTH_LONG).show();
+    }
 
-		btnUpload.setOnClickListener(new View.OnClickListener() {
+    btnUpload.setOnClickListener(new View.OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				// uploading the file to server
+      @Override
+      public void onClick(View v) {
+        // uploading the file to server
 
-        if((!(lat == null || lon == null)) && (mLastUpdateTime == null || getDateDiff(mLastUpdateTime, new Date(), TimeUnit.SECONDS) < 60 )) {
+        if ((!(lat == null || lon == null)) && (mLastUpdateTime == null || getDateDiff(mLastUpdateTime, new Date(), TimeUnit.SECONDS) < 60)) {
           new UploadFileToServer().execute();
-        }
-        else{
+        } else {
           showGpsAlert();
         }
-			}
-		});
+      }
+    });
 
-	}
+  }
 
   public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
     long diffInMillies = date2.getTime() - date1.getTime();
-    return timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);
+    return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
   }
 
   private void showGpsAlert() {
@@ -120,139 +119,140 @@ public class UploadActivity extends Activity {
   }
 
   /**
-	 * Displaying captured image/video on the screen
-	 * */
-	private void previewMedia(boolean isImage) {
-		// Checking whether captured media is image or video
-		if (isImage) {
-			imgPreview.setVisibility(View.VISIBLE);
-			vidPreview.setVisibility(View.GONE);
-			// bimatp factory
-			BitmapFactory.Options options = new BitmapFactory.Options();
+   * Displaying captured image/video on the screen
+   */
+  private void previewMedia(boolean isImage) {
+    // Checking whether captured media is image or video
+    if (isImage) {
+      imgPreview.setVisibility(View.VISIBLE);
+      vidPreview.setVisibility(View.GONE);
+      // bimatp factory
+      BitmapFactory.Options options = new BitmapFactory.Options();
 
-			// down sizing image as it throws OutOfMemory Exception for larger
-			// images
-			options.inSampleSize = 8;
+      // down sizing image as it throws OutOfMemory Exception for larger
+      // images
+      options.inSampleSize = 8;
 
-			final Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
+      final Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
 
-			imgPreview.setImageBitmap(bitmap);
-		} else {
-			imgPreview.setVisibility(View.GONE);
-			vidPreview.setVisibility(View.VISIBLE);
-			vidPreview.setVideoPath(filePath);
-			// start playing
-			vidPreview.start();
-		}
-	}
+      imgPreview.setImageBitmap(bitmap);
+    } else {
+      imgPreview.setVisibility(View.GONE);
+      vidPreview.setVisibility(View.VISIBLE);
+      vidPreview.setVideoPath(filePath);
+      // start playing
+      vidPreview.start();
+    }
+  }
 
-	/**
-	 * Uploading the file to server
-	 * */
-	private class UploadFileToServer extends AsyncTask<Void, Integer, String> {
-		@Override
-		protected void onPreExecute() {
-			// setting progress bar to zero
-			progressBar.setProgress(0);
-			super.onPreExecute();
-		}
+  /**
+   * Uploading the file to server
+   */
+  private class UploadFileToServer extends AsyncTask<Void, Integer, String> {
+    @Override
+    protected void onPreExecute() {
+      // setting progress bar to zero
+      progressBar.setProgress(0);
+      super.onPreExecute();
+    }
 
-		@Override
-		protected void onProgressUpdate(Integer... progress) {
-			// Making progress bar visible
-			progressBar.setVisibility(View.VISIBLE);
+    @Override
+    protected void onProgressUpdate(Integer... progress) {
+      // Making progress bar visible
+      progressBar.setVisibility(View.VISIBLE);
 
-			// updating progress bar value
-			progressBar.setProgress(progress[0]);
+      // updating progress bar value
+      progressBar.setProgress(progress[0]);
 
-			// updating percentage value
-			txtPercentage.setText(String.valueOf(progress[0]) + "%");
-		}
+      // updating percentage value
+      txtPercentage.setText(String.valueOf(progress[0]) + "%");
+    }
 
-		@Override
-		protected String doInBackground(Void... params) {
-			return uploadFile();
-		}
+    @Override
+    protected String doInBackground(Void... params) {
+      return uploadFile();
+    }
 
-		@SuppressWarnings("deprecation")
-		private String uploadFile() {
-			String responseString = null;
+    @SuppressWarnings("deprecation")
+    private String uploadFile() {
+      String responseString = null;
 
-			HttpClient httpclient = new DefaultHttpClient();
-			HttpPost httppost = new HttpPost(Config.FILE_UPLOAD_URL);
+      HttpClient httpclient = new DefaultHttpClient();
+      HttpPost httppost = new HttpPost(Config.FILE_UPLOAD_URL);
 
-			try {
-				AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
-						new ProgressListener() {
+      try {
+        AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
+          new ProgressListener() {
 
-							@Override
-							public void transferred(long num) {
-								publishProgress((int) ((num / (float) totalSize) * 100));
-							}
-						});
+            @Override
+            public void transferred(long num) {
+              publishProgress((int) ((num / (float) totalSize) * 100));
+            }
+          });
 
-				File sourceFile = new File(filePath);
+        File sourceFile = new File(filePath);
 
-				// Adding file data to http body
-				entity.addPart("file", new FileBody(sourceFile));
+        // Adding file data to http body
+        entity.addPart("file", new FileBody(sourceFile));
 
-				// Extra parameters if you want to pass to server
-				entity.addPart("lat",new StringBody(lat));
-				entity.addPart("lon", new StringBody(lon));
-				entity.addPart("time", new StringBody(new Timestamp(System.currentTimeMillis()).toString()));
+        // Extra parameters if you want to pass to server
+        entity.addPart("lat", new StringBody(lat));
+        entity.addPart("lon", new StringBody(lon));
+        entity.addPart("time", new StringBody(new Timestamp(System.currentTimeMillis()).toString()));
 
-				totalSize = entity.getContentLength();
-				httppost.setEntity(entity);
+        totalSize = entity.getContentLength();
+        httppost.setEntity(entity);
 
-				// Making server call
-				HttpResponse response = httpclient.execute(httppost);
-				HttpEntity r_entity = response.getEntity();
+        // Making server call
+        HttpResponse response = httpclient.execute(httppost);
+        HttpEntity r_entity = response.getEntity();
 
-				int statusCode = response.getStatusLine().getStatusCode();
-				if (statusCode == 200) {
-					// Server response
-					responseString = EntityUtils.toString(r_entity);
-				} else {
-					responseString = "Error occurred! Http Status Code: "
-							+ statusCode;
-				}
+        int statusCode = response.getStatusLine().getStatusCode();
+        if (statusCode == 200) {
+          // Server response
+          responseString = EntityUtils.toString(r_entity);
+        } else {
+          responseString = "Error occurred! Http Status Code: "
+            + statusCode;
+        }
 
-			} catch (ClientProtocolException e) {
-				responseString = e.toString();
-			} catch (IOException e) {
-				responseString = e.toString();
-			}
+      } catch (ClientProtocolException e) {
+        responseString = e.toString();
+      } catch (IOException e) {
+        responseString = e.toString();
+      }
 
-			return responseString;
+      return responseString;
 
-		}
+    }
 
-		@Override
-		protected void onPostExecute(String result) {
-			Log.e(TAG, "Response from server: " + result);
+    @Override
+    protected void onPostExecute(String result) {
+      Log.e(TAG, "Response from server: " + result);
 
-			// showing the server response in an alert dialog
-			showAlert(result);
+      // showing the server response in an alert dialog
+      showAlert(result);
 
-			super.onPostExecute(result);
-		}
+      super.onPostExecute(result);
+    }
 
-	}
+  }
 
-	/**
-	 * Method to show alert dialog
-	 * */
-	private void showAlert(String message) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(message).setTitle("Response from Servers")
-				.setCancelable(false)
-				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						finish();
-					}
-				});
-		AlertDialog alert = builder.create();
-		alert.show();
-	}
+
+  private void showAlert(String message) {
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    if (message.equalsIgnoreCase("Success")) {
+      message = "File Uploaded Successfully.";
+    }
+    builder.setMessage(message).setTitle("Response from Servers")
+      .setCancelable(false)
+      .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int id) {
+          finish();
+        }
+      });
+    AlertDialog alert = builder.create();
+    alert.show();
+  }
 
 }

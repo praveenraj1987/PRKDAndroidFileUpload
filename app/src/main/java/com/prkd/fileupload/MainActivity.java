@@ -71,15 +71,7 @@ public class MainActivity extends Activity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        // Changing action bar background color
-        // These two lines are not needed
-//        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(getResources().getString(R.color.action_bar))));
-//
-//      AdView mAdView = (AdView) findViewById(R.id.adViewMain);
-//      AdRequest adRequest = new AdRequest.Builder()
-//                .addTestDevice("07CD19292E4218769CA8F1A59E845F29").build();
-//      mAdView.loadAd(adRequest);
+
         btnCapturePicture = (ImageButton) findViewById(R.id.btnCapturePicture);
         btnNearByPicture = (ImageButton) findViewById(R.id.btnNearByPicture);
         TextView tv = (TextView) findViewById(R.id.privacy_tv);
