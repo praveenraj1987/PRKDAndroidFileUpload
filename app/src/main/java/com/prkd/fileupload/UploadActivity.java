@@ -244,6 +244,9 @@ public class UploadActivity extends Activity {
     if (message.equalsIgnoreCase("Success")) {
       message = "File Uploaded Successfully.";
     }
+    else{
+      message = "Image could not be uploaded. Check  Internet Connection of device or wait for sometime.";
+    }
     builder.setMessage(message).setTitle("Response from Servers")
       .setCancelable(false)
       .setPositiveButton("OK", new DialogInterface.OnClickListener() {

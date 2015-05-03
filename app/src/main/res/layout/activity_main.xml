@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical">
       <TextView
         android:id="@+id/privacy_tv"
         android:layout_width="wrap_content"
@@ -61,13 +61,6 @@
             android:layout_centerHorizontal="true"
             android:paddingRight="20dp"
             android:text="@string/version"/>
-
-      <TextView
-          android:id="@+id/terms"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignParentBottom="true"
-          android:text="@string/terms" />
 
 </LinearLayout>>
   </LinearLayout>
