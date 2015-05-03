@@ -76,8 +76,6 @@ public class MainActivity extends Activity implements
         btnNearByPicture = (ImageButton) findViewById(R.id.btnNearByPicture);
         TextView tv = (TextView) findViewById(R.id.privacy_tv);
         tv.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView terms = (TextView) findViewById(R.id.terms);
-        terms.setMovementMethod(LinkMovementMethod.getInstance());
         /**
          * Capture image button click event
          */
