@@ -11,5 +11,7 @@
     <string name="ShowNearBy">Show Near By</string>
     <string name="ac_name_image_pager">Nearby Images</string>
     <string name="banner_ad_unit_id">ca-app-pub-2442564128299068/9742161039</string>
-  <string name="privacy_msg">Read our <a href="http://www.prkd.ca/privacy.html">Privacy Policy</a> and <a href="http://www.prkd.ca/terms-of-service.html">Terms of Service</a>.</string>
+    <string name="privacy_msg">Read our <a href="http://www.prkd.ca/privacy.html">Privacy Policy</a> and <a href="http://www.prkd.ca/terms-of-service.html">Terms of Service</a>.</string>
+    <string name="version">Version: 2.0</string>>
+    <string name="terms"><a href="http://www.prkd.ca/terms-of-service.html">Terms of Service</a>.</string>
 </resources>
